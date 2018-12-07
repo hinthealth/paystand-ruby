@@ -9,6 +9,8 @@ require 'pay_stand/testing/resources/bank'
 require 'pay_stand/testing/resources/card'
 require 'pay_stand/testing/resources/customer'
 require 'pay_stand/testing/resources/payment'
+require 'pay_stand/testing/resources/recoup'
+require 'pay_stand/testing/resources/refund'
 require 'pay_stand/testing/resources/withdrawal'
 
 module PayStand

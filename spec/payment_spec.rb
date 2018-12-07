@@ -21,4 +21,14 @@ RSpec.describe PayStand::Payment, mock_paystand: true do
       expect(payment.status).to eq 'paid'
     end
   end
+
+  describe '#create_refund' do
+    let(:created_refund) { created_payment.create_refund({ amount: 10.00 }) }
+
+    it 'returns a refund object with data' do
+      expect(created_refund.currency).to eq 'USD'
+      expect(created_refund.payment_id).to eq created_payment.id
+      expect(created_refund.status).to eq 'paid'
+    end
+  end
 end

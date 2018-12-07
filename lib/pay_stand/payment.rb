@@ -5,6 +5,8 @@ module PayStand
 
     extend PayStand::APIOperations::Platform
 
+    nested_resource :refund
+
     def self.create(params = {})
       request.post(path: "#{path}/secure", params: params)
     end

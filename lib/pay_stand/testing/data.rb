@@ -2,10 +2,12 @@ require 'active_support/core_ext/hash/indifferent_access'
 
 module PayStand
   class Data
-    RESOURCES = %i[payment bank card customer withdrawal]
+    RESOURCES = %i[payment bank card customer withdrawal refund recoup]
     include Singleton
 
-    attr_accessor :payments, :banks, :cards, :customers, :withdrawals
+    RESOURCES.each do |resource|
+      attr_accessor resource.to_s.pluralize.to_sym
+    end
 
     def initialize
       reset
@@ -31,11 +33,9 @@ module PayStand
     end
 
     def reset
-      @payments = {}
-      @banks = {}
-      @cards = {}
-      @customers = {}
-      @withdrawals = {}
+      RESOURCES.each do |resource|
+       instance_variable_set("@#{resource.to_s.pluralize}", {})
+     end
     end
 
     private
