@@ -1,5 +1,8 @@
 ## PayStand Ruby Library
 
+[![CircleCI](https://circleci.com/gh/hinthealth/paystand-ruby.svg?style=svg)](https://circleci.com/gh/hinthealth/paystand-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/hinthealth/paystand-ruby/badge.svg?branch=master)](https://coveralls.io/github/hinthealth/paystand-ruby?branch=master)
+
 ### Setup
 
 ```ruby
