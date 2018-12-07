@@ -1,10 +1,14 @@
+require 'coveralls'
+
+Coveralls.wear!
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
 require 'bundler/setup'
 require 'webmock/rspec'
 require_relative './../lib/paystand'
 require_relative './../lib/pay_stand/testing'
-require 'coveralls'
-
-Coveralls.wear!
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
