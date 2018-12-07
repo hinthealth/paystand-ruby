@@ -3,10 +3,19 @@
 [![CircleCI](https://circleci.com/gh/hinthealth/paystand-ruby.svg?style=svg)](https://circleci.com/gh/hinthealth/paystand-ruby)
 [![Coverage Status](https://coveralls.io/repos/github/hinthealth/paystand-ruby/badge.svg?branch=master)](https://coveralls.io/github/hinthealth/paystand-ruby?branch=master)
 
+> **Attention! This repository is not currently maintained**
+
+This is a ruby lib that allows to use the [PayStand API](http://developers.paystand.com/v3.1/docs/)
+
 ### Setup
 
+To install using bundler:
+
+    gem 'paystand', github: 'hinthealth/paystand-ruby'
+
+And add the next initializer:
+
 ```ruby
-require './lib/paystand'
 
 PayStand.configure do |config|
   config.client_id = ''
@@ -18,9 +27,13 @@ PayStand.configure do |config|
 end
 ```
 
-### Code examples
+### Usage
 
-#### Create a transaction on a customer (not the platform)
+This lib doesn't cover everything on the PayStand API, you can use payments, customers, accounts, refunds, cards, banks and withdrawals. We documented some of them in the next paragraphs.
+
+#### Payments
+
+##### Create a transaction on the platform
 
 ```ruby
 card = {
@@ -71,15 +84,9 @@ response = PayStand::Payment.create(child_customer_id, params)
 
 ```
 
-#### Get the balance of a customer
+#### Customers
 
-```ruby
-child_customer_id = '8467x11b5qwfn4fv4byauf6g'
-balance = PayStand::Balance.list(child_customer_id)
-```
-
-#### Create a customer
-
+##### Create a customer
 
 ```ruby
 address = {
@@ -135,7 +142,7 @@ customer_created = PayStand::Customer.create(customer)
 new_customer_id = customer_created.account.id
 ```
 
-#### Retrieve a customer
+##### Retrieve a customer
 
 ```ruby
 
@@ -143,13 +150,22 @@ customer_created = PayStand::Customer.retrieve(new_customer_id)
 
 ```
 
-#### Update a customer
+##### Update a customer
 
 ```ruby
 customer_created = PayStand::Customer.update(new_customer_id, {merchant_key: 'child_customer_sub' })
 ```
 
-#### Create an account
+#### Balances and Accounts
+
+##### Get the balance of a customer
+
+```ruby
+child_customer_id = '8467x11b5qwfn4fv4byauf6g'
+balance = PayStand::Balance.summary(child_customer_id)
+```
+
+##### Create an account
 
 ```ruby
 account = {
@@ -157,6 +173,24 @@ account = {
   key: "my_account",
 }
 response = PayStand::BalanceAccount.create(account)
+```
+
+### Testing
+
+Add `require 'pay_stand/testing'` to your spec helper and you can activate it with `PayStand::Testing.enable`, an example of rspec is:
+
+```ruby
+require 'pay_stand/testing'
+
+RSpec.configure do |config|
+  config.before(:each) do |example|=
+    PayStand::Testing.enable if example.metadata[:mock_paystand]=
+  end
+
+  config.after(:each) do |example|
+    PayStand::Testing.disable if example.metadata[:mock_paystand]
+  end
+ end
 ```
 
 ### TODOs:
