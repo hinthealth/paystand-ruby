@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.license               = 'MIT'
   s.required_ruby_version = '>= 2.4'
 
-  s.add_dependency 'faraday', '~> 0.15.2'
-  s.add_dependency 'faraday_middleware', '~> 0.12.2'
-  s.add_dependency 'webmock', '~> 3.4.2'
-  s.add_dependency 'activesupport', '~> 5.2.1'
+  s.add_dependency 'faraday', '~> 0.15.2', '>= 0.15'
+  s.add_dependency 'faraday_middleware', '~> 0.12.2', '>= 0.12'
+  s.add_dependency 'webmock', '~> 3.4.2', '>= 3'
+  s.add_dependency 'activesupport', '>= 4'
 end
