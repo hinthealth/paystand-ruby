@@ -21,6 +21,8 @@ require 'pay_stand/card'
 require 'pay_stand/customer'
 require 'pay_stand/payer'
 require 'pay_stand/payment'
+require 'pay_stand/refund'
+require 'pay_stand/recoup'
 require 'pay_stand/withdrawal'
 
 module PayStand

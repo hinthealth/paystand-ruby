@@ -22,6 +22,12 @@ module PayStand
       Data.instance.retrieve :payment, id
     end
 
+    def self.create_refund(id, params)
+      return super unless PayStand::Testing.enabled?
+
+      Data.instance.create :refund, Refund.default.merge(payment_id: id).merge(params)
+    end
+
     def self.default
       {
         status: 'paid',
